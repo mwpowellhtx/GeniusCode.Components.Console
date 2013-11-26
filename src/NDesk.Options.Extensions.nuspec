@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>NDesk.Options.Extensions</id>
+    <version>1.1.0</version>
+    <authors>Kingdom Software</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library to wrap NDesk.Options allowing easier use.</description>
+    <dependencies>
+      <dependency id="NDesk.Options" version="0.2.1" />
+    </dependencies>
+  </metadata>
+  <files>
+	<file src="src\NDesk.Options.Extensions\bin\Release\NDesk.Options.Extensions.dll" target="lib\net35\NDesk.Options.Extensions.dll" />
+    <file src="src\NDesk.Options.Extensions\bin\Release\NDesk.Options.Extensions.dll" target="lib\net40\NDesk.Options.Extensions.dll" />
+    <file src="src\NDesk.Options.Extensions\bin\Release\NDesk.Options.Extensions.dll" target="lib\net40-client\NDesk.Options.Extensions.dll" />
+  </files>
+</package>
