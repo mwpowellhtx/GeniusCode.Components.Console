@@ -7,3 +7,4 @@ TestResults/
 *.suo
 *.cache
 * Thumbs.db
+*.nupkg
