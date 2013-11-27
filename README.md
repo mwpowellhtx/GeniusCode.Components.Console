@@ -114,8 +114,8 @@ foreach (var key in option.Matrix.Keys)
 }
 ```
 
-For convenience, <pre>VariableMatrix<T></pre> also looks-and-feels like an
-<pre>IDictionary<string, T></pre>.
+For convenience, VariableMatrix also looks-and-feels like an IDictionary whose
+key is string and whose value is the specified type.
 
 ```
 foreach (var key in option)
