@@ -1,5 +1,7 @@
 namespace NDesk.Options.Extensions
 {
+    /* TODO: Consider what to do with Variable, add RequiredVariable,
+     * or does that mix with the Requirement class? */
     /// <summary>
     /// Variable OptionItemBase class.
     /// The last known Variable Value is recalled.

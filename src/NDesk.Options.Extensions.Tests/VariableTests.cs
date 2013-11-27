@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NDesk.Options.Extensions.Tests
@@ -15,13 +19,17 @@ namespace NDesk.Options.Extensions.Tests
         [TestMethod]
         public void Should_Get_Simple_Variables()
         {
-            var p = new OptionSet();
+            var optionSet = new OptionSet();
 
-            var name = p.AddVariable<string>("n", "");
-            var age = p.AddVariable<int>("a", "");
+            var name = optionSet.AddVariable<string>("n", "");
+            var age = optionSet.AddVariable<int>("a", "");
 
-            var myArgs = "-n FindThisString -a:23".Split(' ');
-            p.Parse(myArgs);
+            /* TODO: The splitskies are clever, but are also error prone. We're assuming
+             * by this that the string is as it appears at the command line, when this is
+             * not the case. This is as the text appears after the command line parser is
+             * through presenting the args to the application. */
+            var args = "-n FindThisString -a:23".Split(' ');
+            optionSet.Parse(args);
 
             Assert.AreEqual(23, age);
             Assert.AreEqual("FindThisString", name);
@@ -33,17 +41,19 @@ namespace NDesk.Options.Extensions.Tests
         [TestMethod]
         public void Should_Detect_Required_Variables()
         {
-            var p = new RequiredValuesOptionSet();
-            var name = p.AddRequiredVariable<string>("n", "");
-            var age = p.AddRequiredVariable<int>("a", "");
-            var age2 = p.AddRequiredVariable<int>("b", "");
-            var age3 = p.AddRequiredVariable<int>("c", "");
+            var optionSet = new RequiredValuesOptionSet();
+            var name = optionSet.AddRequiredVariable<string>("n", "");
+            var age = optionSet.AddRequiredVariable<int>("a", "");
+            var age2 = optionSet.AddRequiredVariable<int>("b", "");
+            var age3 = optionSet.AddRequiredVariable<int>("c", "");
 
             //TODO: Screaming for NUnit-test-case-coverage.
             var args = "-n FindThisString".Split(' ');
-            p.Parse(args);
+            optionSet.Parse(args);
 
-            Assert.AreEqual(3, p.GetMissingVariables().Count());
+            /* TODO: Might could (should) also verify that each of the missing ones,
+             * as well as found ones, are either there are not there. */
+            Assert.AreEqual(3, optionSet.GetMissingVariables().Count());
 
             Assert.AreEqual("FindThisString", name);
         }
@@ -54,18 +64,26 @@ namespace NDesk.Options.Extensions.Tests
         [TestMethod]
         public void Should_Detect_Switches()
         {
-            var p = new OptionSet();
+            var optionSet = new OptionSet();
 
-            var n = p.AddSwitch("n", "");
-            var a = p.AddSwitch("a", "");
-            var b = p.AddSwitch("b", "");
+            var n = optionSet.AddSwitch("n", "");
+            var a = optionSet.AddSwitch("a", "");
+            var b = optionSet.AddSwitch("b", "");
 
-            var myArgs = "-n -a".Split(' ');
-            p.Parse(myArgs);
+            var args = "-n -a".Split(' ');
+            optionSet.Parse(args);
 
-            Assert.IsTrue(n);
-            Assert.IsTrue(a);
-            Assert.IsFalse(b);
+            //Actual, expected.
+            Action<bool, bool> verify = Assert.AreEqual;
+
+            verify(n, true);
+            verify(n.Enabled, true);
+
+            verify(a, true);
+            verify(a.Enabled, true);
+
+            verify(b, false);
+            verify(b.Enabled, false);
         }
 
         /// <summary>
@@ -74,15 +92,15 @@ namespace NDesk.Options.Extensions.Tests
         [TestMethod]
         public void Should_Not_Throw_Exception_Multiset_Variable()
         {
-            var p = new OptionSet();
-            var n = p.AddVariable<string>("n", "");
+            var optionSet = new OptionSet();
+            var n = optionSet.AddVariable<string>("n", "");
 
             //TODO: Screaming for an NUnit-test-case-coverage.
             var args = "-n:Noah -n:Moses -n:David".Split(' ');
 
             try
             {
-                p.Parse(args);
+                optionSet.Parse(args);
             }
             catch (OptionException oex)
             {
@@ -94,23 +112,39 @@ namespace NDesk.Options.Extensions.Tests
         /// Should process VariableLists.
         /// </summary>
         [TestMethod]
-        public void Should_Process_Variablelists()
+        public void Should_Process_VariableLists()
         {
-            var p = new OptionSet();
+            var optionSet = new OptionSet();
 
-            var n = p.AddVariableList<string>("n", "");
-            var a = p.AddVariableList<int>("a", "");
+            var n = optionSet.AddVariableList<string>("n", "");
+            var a = optionSet.AddVariableList<int>("a", "");
 
             //TODO: Screaming for an NUnit-test-case-coverage.
             var args = "-n FindThisString -n:Findit2 -n:Findi3 -a2 -a3 -a5565 -a:23".Split(' ');
 
-            p.Parse(args);
+            optionSet.Parse(args);
 
-            Assert.AreEqual(3, n.Values.Count());
-            Assert.AreEqual(4, a.Values.Count());
+            Action<IEnumerable<int>> verifyA = x =>
+            {
+// ReSharper disable PossibleMultipleEnumeration
+                Assert.AreEqual(4, x.Count());
+                Assert.IsTrue(x.Contains(23));
+// ReSharper restore PossibleMultipleEnumeration
+            };
 
-            Assert.IsTrue(n.Values.Contains("FindThisString"));
-            Assert.IsTrue(a.Values.Contains(23));
+            Action<IEnumerable<string>> verifyN = x =>
+            {
+// ReSharper disable PossibleMultipleEnumeration
+                Assert.AreEqual(3, x.Count());
+                Assert.IsTrue(x.Contains("FindThisString"));
+// ReSharper restore PossibleMultipleEnumeration
+            };
+
+            verifyA(a);
+            verifyA(a.Values);
+
+            verifyN(n);
+            verifyN(n.Values);
         }
 
         /// <summary>
@@ -119,19 +153,39 @@ namespace NDesk.Options.Extensions.Tests
         [TestMethod]
         public void Should_Process_Matrices()
         {
-            var p = new OptionSet();
+            var optionSet = new OptionSet();
 
-            var n = p.AddVariableMatrix<string>("n", "");
+            var n = optionSet.AddVariableMatrix<string>("n", "");
 
-            var args = "-n:Hello=World -n:Color=Red \"-n:Message=Hello With Spaces\" -nName=Jesus -nFavNHL:PittsburghPenguins".Split('-');
-            p.Parse(args.Select(a => "-" + a.Trim()).ToArray());
+            /* Specify the args as an array instead of the splitskies, in particular
+             * on account of the Message= use case. Actually, at this level, quotes
+             * should not enter into the mix, because those are command-line beasties. */
+            var args = new[]
+            {
+                "-n:Hello=World",
+                "-nColor=Red",
+                "-n:Message=Hello With Spaces",
+                "-n:Name=Jesus",
+                "-nFavNHL:NewJerseyDevils",
+            };
 
-            Assert.AreEqual(5, n.Matrix.Count());
-            Assert.IsTrue(n.Matrix.ContainsKey("Hello"));
-            Assert.IsTrue(n.Matrix.ContainsKey("Color"));
-            Assert.IsTrue(n.Matrix.ContainsKey("Message"));
-            Assert.AreEqual("Jesus", n.Matrix["Name"]);
-            Assert.AreEqual("PittsburghPenguins", n.Matrix["FavNHL"]);
+            optionSet.Parse(args.Select(a => "-" + a.Trim()).ToArray());
+
+            //This runs dangerously close to testing the Options themselves.
+            Action<IDictionary<string, string>> verify = x =>
+            {
+                Assert.AreEqual(3, x.Count());
+                Assert.IsTrue(x.ContainsKey("Name"));
+                Assert.IsTrue(x.ContainsKey("Hello"));
+                Assert.IsTrue(x.ContainsKey("Message"));
+                Assert.IsFalse(x.ContainsKey("Color"));
+                Assert.IsFalse(x.ContainsKey("FavNHL"));
+                Assert.AreEqual(x["Name"], "Jesus");
+                Assert.AreEqual(x["Hello"], "World");
+            };
+
+            verify(n);
+            verify(n.Matrix);
         }
     }
 }

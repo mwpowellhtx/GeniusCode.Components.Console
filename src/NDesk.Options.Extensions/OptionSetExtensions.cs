@@ -84,6 +84,7 @@ namespace NDesk.Options.Extensions
 
             var variable = new VariableMatrix<TVariable>(variablePrototype);
 
+            //Key/value pairs are indeed parsed out of the args list.
             optionSet.Add(variablePrototype, description ?? string.Empty, (k, x) =>
                 {
                     if (string.IsNullOrEmpty(k))
@@ -93,7 +94,8 @@ namespace NDesk.Options.Extensions
                     var x_Value = Variable<TVariable>.CastString(x);
 // ReSharper restore InconsistentNaming
 
-                    variable.Matrix.Add(k, x_Value);
+                    //Utilize the InternalMatrix for purposes of this one.
+                    variable.InternalMatrix.Add(k, x_Value);
                 });
 
             return variable;

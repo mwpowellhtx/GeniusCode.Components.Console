@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 
 namespace NDesk.Options.Extensions
@@ -6,7 +7,7 @@ namespace NDesk.Options.Extensions
     /// VariableList OptionItemBase class.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class VariableList<T> : OptionItemBase<T>
+    public class VariableList<T> : OptionItemBase<T>, IEnumerable<T>
     {
         /// <summary>
         /// Constructor.
@@ -38,5 +39,19 @@ namespace NDesk.Options.Extensions
         {
             get { return _values; }
         }
+
+        #region Enumerable Members
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return Values.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
     }
 }
