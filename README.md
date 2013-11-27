@@ -151,13 +151,12 @@ if (cm.TryParseOrShowHelp(writer, args))
 }
 ```
 
-Standard Extension parsing functionality includes to write a usage
-blurb including the ConsoleName, passed to the ConsoleManager ctor,
-as well as option descriptions. This occurs when parsing is incomplete
-or in error for any reason.
+Standard Extension parsing functionality writes a usage blurb including the
+ConsoleName, passed to the ConsoleManager ctor, as well as option descriptions.
+This occurs when parsing is incomplete or in error for any reason.
 
-In production code, any TextWriter will do, but you probably want to
-interact with the Console for your output. Straightforward enough:
+In production code, any TextWriter will do, but you probably want to interact
+with the Console for your output. Straightforward enough:
 
 ```
 if (cm.TryParseOrShowHelp(Console.Out, args))
