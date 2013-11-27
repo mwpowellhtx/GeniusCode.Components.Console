@@ -206,12 +206,6 @@ Which means you necessarily separate the concerns of options, parsing, etc,
 from the rest of your application. However, this topic is beyond the scope of
 this repository.
 
-## NuGet Deployment
-
-I am currently deploying through the [NuGet Gallery](https://www.nuget.org/)
-for purposes of distribution. You are welcome to add this dependency through
-NuGet, download the source, or whatever.
-
 ## Target Environments
 
 At present Extensions is targeting several .NET framework versions for
@@ -222,6 +216,12 @@ Any CPU. It may be worth refining that to 32- and 64-bit targets as needs be.
 3. .NET 4.0 Client Profile
 
 I expect that .NET 4.5 will be interesting to support as well.
+
+## NuGet Deployment
+
+I am currently deploying through the [NuGet Gallery](https://www.nuget.org/)
+for purposes of distribution. You are welcome to add this dependency through
+NuGet, download the source, or whatever.
 
 ## Disclaimer
 
