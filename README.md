@@ -8,13 +8,13 @@ to facilitate easier exposure of command line arguments.
 ## The Basics
 
 This library is exactly what it says it is: an Extension to the
-[https://github.com/gibbed/NDesk.Options](NDesk.Options) library.
+[NDesk.Options](https://github.com/gibbed/NDesk.Options) library.
 So if you are unfamiliar with Options, you should get familiar with that
 first. You can do that by installing Extensions, or just run with Options,
 at your discretion.
 
-Basically, Extensions wraps the Options in a friendlier style of
-fluent-style-variable completion for command line options.
+Basically, Extensions wraps the Options in a friendlier (at least in my
+opinion) fluent-style-variable completion for command line options.
 
 ## OptionSet and RequiredValuesOptionSet
 
@@ -31,7 +31,7 @@ assume that we have the following OptionSet available:
 var os = new OptionSet();
 ```
 
-- Switch is a simple command line that says whether it is Enabled.
+- Switch is a simple command line class that says whether it is Enabled.
 Enabled means that the switch was specified at the command line.
 
 ```
@@ -63,8 +63,7 @@ if (option.Value > 0)
 }
 ```
 
-For convenience, <pre>Variable<T></pre> implicitly converts to its
-<pre>T</pre> value.
+For convenience, Variable implicitly converts to its underlying Value.
 
 - VariableLists can be specified. A variable list is a name associated with
 a list of values, for as many times as the name/value appears, you will have
