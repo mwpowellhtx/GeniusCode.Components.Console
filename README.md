@@ -78,8 +78,7 @@ foreach (var timeout in timeouts.Values)
 }
 ```
 
-For convenience, <pre>VariableList<T></pre> also looks-and-feels like an
-<pre>IEnumerable<T></pre>:
+For convenience, VariableList also looks-and-feels like an IEnumerable:
 
 ```
 foreach (var timeout in timeouts)
@@ -88,9 +87,9 @@ foreach (var timeout in timeouts)
 }
 ```
 
-- Last but not least, <pre>VariableMatrix<T></pre> supports cataloging a
-dictionary of name/value pairs associated with a command line argument.
-At the command line these appear like:
+- Last but not least, VariableMatrix supports cataloging a dictionary of
+name/value pairs associated with a command line argument. At the command
+line these appear like:
 
 <pre>... -n:Name=Value -n:Name2=Value2 "-n:Name3=Value3 Value4 Value5"</pre>
 
