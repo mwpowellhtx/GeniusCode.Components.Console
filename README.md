@@ -169,29 +169,31 @@ There you go. I practically handed you your production usage right there.
 
 ## Roadmap
 
-Some plausible areas of extension and/or improvement include, but are not
-limited to:
+I welcome ideas and ways to improve upon the extensibility of Extensions.
+At present, here are some plausible areas of extension and/or improvement
+include, but are not limited to:
 
 - [ ] Support custom variable conversions, such as for custom-types.
 Basically means injecting lambdas to do the conversions as you see fit.
 Within reason, with command line limitations: you would not want to completely
 deserialize a class or struct, for instance. Indeed, you might want to convert
-an enumerated value from a string, for instance.
+an enumerated value from a string, however.
 
 - [ ] Required variables could do with a face lift of sorts, a bit richer of
 a model. Basically that says not only the underlying Value when it is
 discovered, but also whether it IsMissing, when it is not discovered. This
 would potentially Obsolete if not remove the Requirement class altogether
-I think.
+I think, and/or the manner in which required-variables are discerned.
 
 - [ ] Support .NET 4.5 ReadOnlyDictionary. I cannot think of a use-case right
 off hand for VariableMatrix, in particular, however, in its present form, it
 supports a raw IDictionary implementation, which leaves a bit of a gap, open
 to end-user (that's you, potentially) tampering. A better implementation would
-be to depend upon ReadOnlyDictionary, or roll-my-own implementation of it. At
-present we'll simply throw InvalidOperationException mutation requests.
-
-I welcome ideas and ways to improve upon the extensibility of Extensions.
+be to depend upon ReadOnlyDictionary, or roll-your-own implementation of it
+for earlier .NET framework versions. That would be straightforward enough
+I think, hopefully without confusing anyone's collection frameworks terribly.
+At present we simply implement a full IDictionary and throw ReadOnlyException
+when mutation requests are encountered.
 
 ## Code Organization
 
