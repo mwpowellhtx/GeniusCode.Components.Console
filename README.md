@@ -185,16 +185,6 @@ discovered, but also whether it IsMissing, when it is not discovered. This
 would potentially Obsolete if not remove the Requirement class altogether
 I think, and/or the manner in which required-variables are discerned.
 
-- [ ] Support .NET 4.5 ReadOnlyDictionary. I cannot think of a use-case right
-off hand for VariableMatrix, in particular, however, in its present form, it
-supports a raw IDictionary implementation, which leaves a bit of a gap, open
-to end-user (that's you, potentially) tampering. A better implementation would
-be to depend upon ReadOnlyDictionary, or roll-your-own implementation of it
-for earlier .NET framework versions. That would be straightforward enough
-I think, hopefully without confusing anyone's collection frameworks terribly.
-At present we simply implement a full IDictionary and throw ReadOnlyException
-when mutation requests are encountered.
-
 ## Code Organization
 
 In general, the library itself depends on there being an OptionSet instance
