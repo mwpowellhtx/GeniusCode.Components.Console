@@ -144,12 +144,12 @@ foreach (var key in option)
 }
 ```
 
-<pre>**Note**: Microsoft .NET Framework 4.5 introduces an IReadOnlyDictionary
+**Note**: Microsoft .NET Framework 4.5 introduces an IReadOnlyDictionary
 concept, which would be perfect for this use-case. However, since we are
 supporting backwards compatibility, we will need to overlook that usefulness.
 It's a documented issue in the repository, and I may take a gander at how
 better to migrate into a purely read-only use-case. For now, it is left to
-end-user discipline not to mutate the matrix dictionary.</pre>
+end-user discipline not to mutate the matrix dictionary.
 
 ## Parsing Arguments
 
