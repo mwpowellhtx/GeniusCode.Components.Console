@@ -197,8 +197,8 @@ There you go. I practically handed you your production usage right there.
 ## Roadmap
 
 I welcome ideas and ways to improve upon the extensibility of Extensions.
-At present, here are some plausible areas of extension and/or improvement
-include, but are not limited to:
+At present, plausible areas of extension and/or improvement include, but
+are not limited to:
 
 - [ ] Support custom variable conversions, such as for custom-types.
 Basically means injecting lambdas to do the conversions as you see fit.
