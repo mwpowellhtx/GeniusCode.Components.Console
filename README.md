@@ -31,6 +31,8 @@ assume that we have the following OptionSet available:
 var os = new OptionSet();
 ```
 
+### Switch
+
 - Switch is a simple command line class that says whether it is Enabled.
 Enabled means that the switch was specified at the command line.
 
@@ -52,7 +54,9 @@ if (option)
 }
 ```
 
-- Variables can also have a built-in type associated with them.
+### Variable
+
+- A Variable can also have a built-in type associated with it.
 
 ```
 var option = os.AddVariable<int>("Option", "Value to set");
@@ -65,9 +69,11 @@ if (option.Value > 0)
 
 For convenience, Variable implicitly converts to its underlying Value.
 
-- VariableLists can be specified. A variable list is a name associated with
-a list of values, for as many times as the name/value appears, you will have
-those values listed in the variable when you work with it.
+### VariableList
+
+- A VariableList can be requested and is simply a name associated with a list
+of values. For as many times as the name/value appears, you will have those
+values enumerated in the variable when you work with it.
 
 ```
 var timeouts = os.AddVariableList<int>("Timeout", "Timeout in milliseconds");
@@ -87,6 +93,8 @@ foreach (var timeout in timeouts)
 }
 ```
 
+### VariableMatrix
+
 - Last but not least, VariableMatrix supports cataloging a dictionary of
 name/value pairs associated with a command line argument. At the command
 line these appear like:
@@ -96,12 +104,24 @@ line these appear like:
 Or such as this at the language level:
 
 ```
-new string[]{"-n:Name=Value", "-n:Name2=Value2", "-n:Name3=Value3 Value4 Value5",};
+var args = new string[]
+{
+    "-n:Name=Value",
+    "-n:Name2=Value2",
+    "-n:Name3=Value3 Value4 Value5",
+};
 ```
 
 Which parses to:
 
-<pre>{{"Name","Value"},{"Name2",Value2"},{"Name3","Value3 Value4 Value5"}}</pre>
+```
+IDictionary<string, string> parsed = new Dictionary<string, string>()
+{
+    {"Name", "Value"},
+    {"Name2", "Value2"},
+    {"Name3", "Value3 Value4 Value5"}
+};
+```
 
 Okay, now for the code example:
 
@@ -124,10 +144,17 @@ foreach (var key in option)
 }
 ```
 
+<pre>**Note**: Microsoft .NET Framework 4.5 introduces an IReadOnlyDictionary
+concept, which would be perfect for this use-case. However, since we are
+supporting backwards compatibility, we will need to overlook that usefulness.
+It's a documented issue in the repository, and I may take a gander at how
+better to migrate into a purely read-only use-case. For now, it is left to
+end-user discipline not to mutate the matrix dictionary.</pre>
+
 ## Parsing Arguments
 
-Arguments are passed through the Program Main method as per usual.
-For instance:
+Arguments are passed through the Program Main method as per usual. For
+instance:
 
 ```
 public static void Main(params string[] args)
