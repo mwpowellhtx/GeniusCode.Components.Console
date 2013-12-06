@@ -82,12 +82,12 @@ namespace NDesk.Options.Extensions
             //Not-parsed determined here.
             var parsed = !(remaining.Any()
                            || _optionSet.GetMissingVariables().Any()
-                           || _helpInfo.Help.Value);
+                           || _helpInfo.Help.Enabled);
 
             //Show-error when any-remaining or missing-variables.
             if (remaining.Any() || _optionSet.GetMissingVariables().Any())
                 writer.WriteLine("{0}: error parsing arguments:", ConsoleName);
-            else
+            else if (!parsed)
                 writer.WriteLine("{0} options:", ConsoleName);
 
             //Show-help when not-parsed.

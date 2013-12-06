@@ -8,12 +8,12 @@ namespace NDesk.Options.Extensions
         /// <summary>
         /// Help backing field.
         /// </summary>
-        private readonly Variable<bool> _help;
+        private readonly Switch _help;
 
         /// <summary>
         /// Gets the Help.
         /// </summary>
-        public Variable<bool> Help
+        public Switch Help
         {
             get { return _help; }
         }
@@ -27,7 +27,7 @@ namespace NDesk.Options.Extensions
         internal HelpInfo(OptionSet optionSet, string prototype, string description = null)
         {
             var variablePrototype = prototype;
-            _help = optionSet.AddVariable<bool>(variablePrototype, description);
+            _help = optionSet.AddSwitch(variablePrototype, description);
         }
     }
 }
