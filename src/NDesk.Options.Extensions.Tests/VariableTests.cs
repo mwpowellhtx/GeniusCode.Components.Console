@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace NDesk.Options.Extensions.Tests
+namespace NDesk.Options.Extensions
 {
     /// <summary>
     /// Variable tests.

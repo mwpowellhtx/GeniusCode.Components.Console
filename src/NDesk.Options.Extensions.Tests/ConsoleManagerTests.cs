@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace NDesk.Options.Extensions.Tests
+namespace NDesk.Options.Extensions
 {
     /// <summary>
     /// ConsoleManager tests.

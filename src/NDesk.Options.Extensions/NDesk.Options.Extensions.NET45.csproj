@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{44E3BA11-A13F-4944-B398-22EB9924F765}</ProjectGuid>
+    <ProjectGuid>{16C5AA22-00D3-4E63-A1A5-48986A6D5AC8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NDesk.Options.Extensions</RootNamespace>
     <AssemblyName>NDesk.Options.Extensions</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -29,20 +29,22 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\NET40\Debug\</OutputPath>
-    <BaseIntermediateOutputPath>obj\NET40\</BaseIntermediateOutputPath>
+    <OutputPath>bin\NET45\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>obj\NET45\</BaseIntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\NET40\Release\</OutputPath>
-    <BaseIntermediateOutputPath>obj\NET40\</BaseIntermediateOutputPath>
+    <OutputPath>bin\NET45\Release\</OutputPath>
+    <BaseIntermediateOutputPath>obj\NET45\</BaseIntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions", "NDesk.Options.Extensions\NDesk.Options.Extensions.csproj", "{44E3BA11-A13F-4944-B398-22EB9924F765}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions.Tests", "NDesk.Options.Extensions.Tests\NDesk.Options.Extensions.Tests.csproj", "{E7D9F686-4A01-4272-A68A-A34F65B76D70}"
@@ -17,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4F0486
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions.NET40-client", "NDesk.Options.Extensions\NDesk.Options.Extensions.NET40-client.csproj", "{AD2F3E8A-7029-4B62-8FD1-914EA4565687}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions.NET45", "NDesk.Options.Extensions\NDesk.Options.Extensions.NET45.csproj", "{16C5AA22-00D3-4E63-A1A5-48986A6D5AC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions.Tests.NET45", "NDesk.Options.Extensions.Tests\NDesk.Options.Extensions.Tests.NET45.csproj", "{9E8330B8-C41B-47EB-969B-A55364D696A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +50,14 @@ Global
 		{AD2F3E8A-7029-4B62-8FD1-914EA4565687}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD2F3E8A-7029-4B62-8FD1-914EA4565687}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD2F3E8A-7029-4B62-8FD1-914EA4565687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16C5AA22-00D3-4E63-A1A5-48986A6D5AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16C5AA22-00D3-4E63-A1A5-48986A6D5AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16C5AA22-00D3-4E63-A1A5-48986A6D5AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16C5AA22-00D3-4E63-A1A5-48986A6D5AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E8330B8-C41B-47EB-969B-A55364D696A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8330B8-C41B-47EB-969B-A55364D696A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8330B8-C41B-47EB-969B-A55364D696A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8330B8-C41B-47EB-969B-A55364D696A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
