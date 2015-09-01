@@ -35,21 +35,21 @@ namespace NDesk.Options.Extensions
         /// <returns></returns>
         public Variable<T> AddRequiredVariable<T>(string prototype, string description = null)
         {
-            var variablePrototype = prototype + "=";
+            _requiredVariableValues.Add(prototype + "=", false);
+            return this.AddVariable<T>(prototype, variablePrototype => { this._requiredVariableValues[variablePrototype] = true; }, description);
+        }
 
-            _requiredVariableValues.Add(variablePrototype, false);
-
-            var variable = new Variable<T>(variablePrototype);
-
-            /* This is why a WET approach is bad, at best more-error-prone.
-             * Also why I prefer a SOLID, DRY approach whenever possible. */
-            Add(variablePrototype, description, x =>
-            {
-                variable.Value = Variable<T>.CastString(x);
-                _requiredVariableValues[variablePrototype] = true;
-            });
-
-            return variable;
+        /// <summary>
+        /// Adds the Required VariableList to the OptionSet.
+        /// </summary>
+        /// <typeparam name="TVariable"></typeparam>
+        /// <param name="prototype"></param>
+        /// <param name="description"></param>
+        /// <returns></returns>
+        public VariableList<TVariable> AddRequiredVariableList<TVariable>(string prototype, string description = null)
+        {
+            _requiredVariableValues.Add(prototype + "=", false);
+            return this.AddVariableList<TVariable>(prototype, variablePrototype => { this._requiredVariableValues[variablePrototype] = true; }, description);
         }
     }
 }

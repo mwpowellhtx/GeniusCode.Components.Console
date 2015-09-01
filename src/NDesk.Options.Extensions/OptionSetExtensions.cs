@@ -1,3 +1,5 @@
+using System;
+
 namespace NDesk.Options.Extensions
 {
     /// <summary>
@@ -38,10 +40,22 @@ namespace NDesk.Options.Extensions
         public static Variable<TVariable> AddVariable<TVariable>(this OptionSet optionSet,
             string prototype, string description = null)
         {
+            return AddVariable<TVariable>(optionSet, prototype, none => { }, description);
+        }
+
+        internal static Variable<TVariable> AddVariable<TVariable>(this OptionSet optionSet,
+            string prototype, Action<string> callback, string description = null)
+        {
             var variablePrototype = prototype + "=";
+
             var variable = new Variable<TVariable>(variablePrototype);
-            optionSet.Add(variablePrototype, description ?? string.Empty,
-                x => variable.Value = Variable<TVariable>.CastString(x));
+
+            optionSet.Add(variablePrototype, description, x =>
+            {
+                variable.Value = Variable<TVariable>.CastString(x);
+                callback(variablePrototype);
+            });
+
             return variable;
         }
 
@@ -57,6 +71,13 @@ namespace NDesk.Options.Extensions
         public static VariableList<TVariable> AddVariableList<TVariable>(this OptionSet optionSet,
             string prototype, string description = null)
         {
+            return AddVariableList<TVariable>(optionSet, prototype, none => {}, description);
+        }
+
+        internal static VariableList<TVariable> AddVariableList<TVariable>(this OptionSet optionSet,
+            string prototype, Action<string> callback, string description = null)
+        {
+            
             var variablePrototype = prototype + "=";
             var variable = new VariableList<TVariable>(variablePrototype);
             optionSet.Add(variablePrototype, description ?? string.Empty, x =>
@@ -65,6 +86,7 @@ namespace NDesk.Options.Extensions
                 var x_Value = Variable<TVariable>.CastString(x);
 // ReSharper restore InconsistentNaming
                 variable.ValuesList.Add(x_Value);
+                callback(variablePrototype);
             });
             return variable;
         }
