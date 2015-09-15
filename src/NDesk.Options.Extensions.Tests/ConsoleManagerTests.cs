@@ -13,7 +13,7 @@ namespace NDesk.Options.Extensions
         /// Should respond to required-but-not-present-options with show-help.
         /// </summary>
         [TestMethod]
-        public void Should_Respond_To_Required_Options_With_Show_Help()
+        public void Should_Respond_To_Missing_Required_Variables_With_Show_Help()
         {
             var optionSet = new RequiredValuesOptionSet();
 
@@ -30,6 +30,33 @@ namespace NDesk.Options.Extensions
             using (var writer = new StringWriter())
             {
                 var parsed = cm.TryParseOrShowHelp(writer, new string[] {});
+
+                Assert.IsFalse(parsed);
+
+                Assert.IsTrue(writer.ToString().Contains(ConsoleName + ": error parsing arguments:"));
+            }
+        }
+
+        /// <summary>
+        /// Should respond to required-but-not-present-options with show-help.
+        /// </summary>
+        [TestMethod]
+        public void Should_Respond_To_Missing_Required_VariableLists_With_Show_Help()
+        {
+            var optionSet = new RequiredValuesOptionSet();
+
+            //Populate the OptionSet with some nominal options.
+            var n = optionSet.AddRequiredVariableList<string>("n", "");
+            var a = optionSet.AddRequiredVariableList<int>("a", "");
+            var m = optionSet.AddRequiredVariableList<string>("m", "");
+
+            const string ConsoleName = "Test";
+
+            var cm = new ConsoleManager(ConsoleName, optionSet);
+
+            using (var writer = new StringWriter())
+            {
+                var parsed = cm.TryParseOrShowHelp(writer, new string[] { });
 
                 Assert.IsFalse(parsed);
 

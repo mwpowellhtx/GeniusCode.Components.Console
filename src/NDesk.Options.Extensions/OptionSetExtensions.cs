@@ -40,11 +40,21 @@ namespace NDesk.Options.Extensions
         public static Variable<TVariable> AddVariable<TVariable>(this OptionSet optionSet,
             string prototype, string description = null)
         {
+            // We pass an empty method to the addedEventHandler because we don't need anything extra.
             return AddVariable<TVariable>(optionSet, prototype, none => { }, description);
         }
 
+        /// <summary>
+        /// Adds a strongly typed Variable to the OptionSet.
+        /// </summary>
+        /// <typeparam name="TVariable"></typeparam>
+        /// <param name="optionSet"></param>
+        /// <param name="prototype"></param>
+        /// <param name="addedAction">Allows execution of arbitrary code when an option is parsed</param>
+        /// <param name="description"></param>
+        /// <returns>The Variable associated with the OptionSet.</returns>
         internal static Variable<TVariable> AddVariable<TVariable>(this OptionSet optionSet,
-            string prototype, Action<string> callback, string description = null)
+            string prototype, Action<string> addedAction, string description = null)
         {
             var variablePrototype = prototype + "=";
 
@@ -53,7 +63,8 @@ namespace NDesk.Options.Extensions
             optionSet.Add(variablePrototype, description, x =>
             {
                 variable.Value = Variable<TVariable>.CastString(x);
-                callback(variablePrototype);
+                // Perform whatever our downstream callers need to do when an option is parsed.
+                addedAction(variablePrototype);
             });
 
             return variable;
@@ -71,11 +82,22 @@ namespace NDesk.Options.Extensions
         public static VariableList<TVariable> AddVariableList<TVariable>(this OptionSet optionSet,
             string prototype, string description = null)
         {
+            // We pass nothing to the addedEventHandler because we don't need anything extra.
             return AddVariableList<TVariable>(optionSet, prototype, none => {}, description);
         }
 
+        /// <summary>
+        /// Accumulates option values in a strongly-typed Variable list.
+        /// </summary>
+        /// <typeparam name="TVariable"></typeparam>
+        /// <param name="optionSet"></param>
+        /// <param name="prototype"></param>
+        /// <param name="addedAction">Allows execution of arbitrary code when an option is parsed</param>
+        /// <param name="description"></param>
+        /// <returns></returns>
+        /// <returns>The VariableList associated with the OptionSet.</returns>
         internal static VariableList<TVariable> AddVariableList<TVariable>(this OptionSet optionSet,
-            string prototype, Action<string> callback, string description = null)
+            string prototype, Action<string> addedAction, string description = null)
         {
             
             var variablePrototype = prototype + "=";
@@ -86,7 +108,9 @@ namespace NDesk.Options.Extensions
                 var x_Value = Variable<TVariable>.CastString(x);
 // ReSharper restore InconsistentNaming
                 variable.ValuesList.Add(x_Value);
-                callback(variablePrototype);
+
+                // Perform whatever our downstream callers need to do when an option is parsed.
+                addedAction(variablePrototype);
             });
             return variable;
         }
