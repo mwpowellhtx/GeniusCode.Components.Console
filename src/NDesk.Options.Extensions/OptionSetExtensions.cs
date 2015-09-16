@@ -45,7 +45,7 @@ namespace NDesk.Options.Extensions
         }
 
         /// <summary>
-        /// Adds a strongly typed Variable to the OptionSet.
+        /// Adds a strongly typed Variable to the OptionSet with the option to execute arbitrary code when options are parsed.
         /// </summary>
         /// <typeparam name="TVariable"></typeparam>
         /// <param name="optionSet"></param>
@@ -87,7 +87,7 @@ namespace NDesk.Options.Extensions
         }
 
         /// <summary>
-        /// Accumulates option values in a strongly-typed Variable list.
+        /// Accumulates option values in a strongly-typed Variable list with the option to execute arbitrary code when options are parsed.
         /// </summary>
         /// <typeparam name="TVariable"></typeparam>
         /// <param name="optionSet"></param>
