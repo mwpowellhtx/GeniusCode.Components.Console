@@ -57,6 +57,61 @@ namespace NDesk.Options.Extensions
         }
 
         /// <summary>
+        /// Should detect required variable lists.
+        /// </summary>
+        [TestMethod]
+        public void Should_Detect_Required_VariableLists()
+        {
+            var optionSet = new RequiredValuesOptionSet();
+            var n = optionSet.AddRequiredVariableList<string>("n", "");
+            var a = optionSet.AddRequiredVariableList<int>("a", "");
+            var m = optionSet.AddRequiredVariableList<string>("m", "");
+
+            //TODO: Screaming for an NUnit-test-case-coverage.
+            var args = "-n FindThisString -n:Findit2 -n:Findit3 -a2 -a3 -a5565 -a:23".Split(' ');
+
+            optionSet.Parse(args);
+
+            Action<IEnumerable<string>> verifyN = x =>
+            {
+                // ReSharper disable PossibleMultipleEnumeration
+                Assert.AreEqual(3, x.Count());
+                Assert.IsTrue(x.Contains("FindThisString"));
+                Assert.IsTrue(x.Contains("Findit2"));
+                Assert.IsTrue(x.Contains("Findit3"));
+                // ReSharper restore PossibleMultipleEnumeration
+            };
+
+            Action<IEnumerable<int>> verifyA = x =>
+            {
+                // ReSharper disable PossibleMultipleEnumeration
+                Assert.AreEqual(4, x.Count());
+                Assert.IsTrue(x.Contains(2));
+                Assert.IsTrue(x.Contains(3));
+                Assert.IsTrue(x.Contains(5565));
+                Assert.IsTrue(x.Contains(23));
+                // ReSharper restore PossibleMultipleEnumeration
+            };
+
+            Action<IEnumerable<string>> verifyM = x =>
+            {
+                // ReSharper disable PossibleMultipleEnumeration
+                Assert.AreEqual(0, x.Count());
+                Assert.AreEqual(1, optionSet.GetMissingVariables().Count());
+                // ReSharper restore PossibleMultipleEnumeration
+            };
+
+            verifyA(a);
+            verifyA(a.Values);
+
+            verifyN(n);
+            verifyN(n.Values);
+
+            verifyM(m);
+            verifyM(m.Values);
+        }
+
+        /// <summary>
         /// Should detect switches.
         /// </summary>
         [TestMethod]
