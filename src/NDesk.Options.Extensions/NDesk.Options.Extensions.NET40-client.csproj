@@ -29,19 +29,21 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\NET40-client\Debug\</OutputPath>
-	<BaseIntermediateOutputPath>obj\NET40-client\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>obj\NET40-client\</BaseIntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\NET40-client\Debug\NDesk.Options.Extensions.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\NET40-client\Release\</OutputPath>
-	<BaseIntermediateOutputPath>obj\NET40-client\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>obj\NET40-client\</BaseIntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\NET40-client\Release\NDesk.Options.Extensions.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />

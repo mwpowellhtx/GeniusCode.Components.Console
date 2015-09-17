@@ -29,19 +29,21 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\NET35\Debug\</OutputPath>
-	<BaseIntermediateOutputPath>obj\NET35\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>obj\NET35\</BaseIntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\NET35\Debug\NDesk.Options.Extensions.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\NET35\Release\</OutputPath>
-	<BaseIntermediateOutputPath>obj\NET35\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>obj\NET35\</BaseIntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\NET35\Release\NDesk.Options.Extensions.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
