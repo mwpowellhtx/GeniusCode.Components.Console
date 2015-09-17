@@ -2,7 +2,7 @@
 <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>NDesk.Options.Extensions</id>
-    <version>1.3.3</version>
+    <version>1.4.1</version>
     <authors>Kingdom Software</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Library to wrap NDesk.Options allowing easier use.</description>
@@ -12,8 +12,12 @@
   </metadata>
   <files>
 	<file src="NDesk.Options.Extensions\bin\NET35\Release\NDesk.Options.Extensions.dll" target="lib\net35\NDesk.Options.Extensions.dll" />
+	<file src="NDesk.Options.Extensions\bin\NET35\Release\NDesk.Options.Extensions.xml" target="lib\net35\NDesk.Options.Extensions.xml" />
     <file src="NDesk.Options.Extensions\bin\NET40\Release\NDesk.Options.Extensions.dll" target="lib\net40\NDesk.Options.Extensions.dll" />
+    <file src="NDesk.Options.Extensions\bin\NET40\Release\NDesk.Options.Extensions.xml" target="lib\net40\NDesk.Options.Extensions.xml" />
     <file src="NDesk.Options.Extensions\bin\NET40-client\Release\NDesk.Options.Extensions.dll" target="lib\net40-client\NDesk.Options.Extensions.dll" />
+    <file src="NDesk.Options.Extensions\bin\NET40-client\Release\NDesk.Options.Extensions.xml" target="lib\net40-client\NDesk.Options.Extensions.xml" />
     <file src="NDesk.Options.Extensions\bin\NET45\Release\NDesk.Options.Extensions.dll" target="lib\net45\NDesk.Options.Extensions.dll" />
+    <file src="NDesk.Options.Extensions\bin\NET45\Release\NDesk.Options.Extensions.xml" target="lib\net45\NDesk.Options.Extensions.xml" />
   </files>
 </package>

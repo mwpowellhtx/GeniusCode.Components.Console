@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions", "NDesk.Options.Extensions\NDesk.Options.Extensions.csproj", "{44E3BA11-A13F-4944-B398-22EB9924F765}"
 EndProject
@@ -23,6 +23,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions.NET45", "NDesk.Options.Extensions\NDesk.Options.Extensions.NET45.csproj", "{16C5AA22-00D3-4E63-A1A5-48986A6D5AC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options.Extensions.Tests.NET45", "NDesk.Options.Extensions.Tests\NDesk.Options.Extensions.Tests.NET45.csproj", "{9E8330B8-C41B-47EB-969B-A55364D696A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99EBE03E-E4E0-496D-A012-0B46633C0A30}"
+	ProjectSection(SolutionItems) = preProject
+		NDesk.Options.Extensions.nuspec = NDesk.Options.Extensions.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
